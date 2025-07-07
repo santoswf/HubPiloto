@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsividade.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css "
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+    <div class="menu-btn" id="menu-btn" onclick="abrirMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<aside class="sidebar" id="menuLateral">
+  <div class="sidebar-header">
+    <span class="close-btn" onclick="fecharMenu()">X</span>
+    <a href="#">Teste</a>
+  </div>
+</aside>
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Soluções</a>
+  <a href="#">Contato</a>
+</nav>
+    </header>
+
+    <section class="page-one">
+      <div class="txt-page-one">
+        <h1>
+          Somos a Agência HUB e<br />
+          estamos preparados para transformar sua empresa
+        </h1>
+        <p>
+          Especialistas em conectar sua empresa ao público certo, com uma
+          estrutura completa que une marketing, vendas e tecnologia. Atuamos
+          como seu parceiro estratégico, mergulhamos no seu negócio e entregamos
+          soluções reais que geram faturamento e crescimento.
+        </p>
+      </div>
+      <div class="img-page-one">
+        <img
+          src="imagens/logo-png.png"
+          alt="imagem da logo, Hub Conectando Soluções"
+        />
+      </div>
+    </section>
+
+    <section class="second-page"> 
+      <div class="txt-second-page">
+        <h2>Da criação da sua marca à conversão de leads em clientes</h2>
+        <p>
+          A HUB entende, executa e transforma resultados para o seu negócio.
+        </p>
+      </div>
+      <div class="align-phones">
+        <div class="scene">
+          <div class="carrossel" id="carrossel">
+            <div
+              class="celular"
+              style="transform: rotateY(0deg) translateZ(400px)"
+            >
+              <div class="face front">
+                <a href="#">Transforme seus resultados</a>
+              </div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+            </div>
+            <div
+              class="celular"
+              style="transform: rotateY(105deg) translateZ(400px)"
+            >
+              <div class="face front">
+                <a href="#">Leads que convertem</a>
+              </div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+            </div>
+            <div
+              class="celular"
+              style="transform: rotateY(154deg) translateZ(400px)"
+            >
+              <div class="face front"><a href="#">Marca com propósito</a></div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+            </div>
+            <div
+              class="celular"
+              style="transform: rotateY(206deg) translateZ(400px)"
+            >
+              <div class="face front"><a href="#">Do lead à venda</a></div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+            </div>
+            <div
+              class="celular"
+              style="transform: rotateY(255deg) translateZ(400px)"
+            >
+              <div class="face front">Atraia e converta</div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+            </div>
+            <div
+              class="celular"
+              style="transform: rotateY(310deg) translateZ(400px)"
+            >
+              <div class="face front">Conquiste mais clientes</div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+            </div>
+            <div
+              class="celular"
+              style="transform: rotateY(52deg) translateZ(400px)"
+            >
+              <div class="face front">Resultados com estratégia</div>
+              <div class="face back"></div>
+              <div class="face left"></div>
+              <div class="face right"></div>
+              <div class="face top"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> 
+
+    <section class="relative py-24 px-6 md:px-20 bg-transparent">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-1 gap-34 items-center">
+        <!-- Coluna 1 - Texto dos Desafios -->
+        <div class="responsividade" style="margin-top: 25%">
+          <h2 class="h2-checkbocks">
+            Escolha um ou mais desafios
+          </h2>
+
+          <div class="space-y-8">
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-7 rounded-xl flex items-start gap-6"
+            >
+              <div class="flex items-center mb-4">
+                <input
+                  id="checkbox-default"
+                  type="checkbox"
+                  value=""
+                  class="w-8 h-8 appearance-none border cursor-pointer border-gray-300 rounded-md mr-2 hover:border-indigo-500 hover:bg-indigo-100 checked:bg-no-repeat checked:bg-center checked:border-indigo-500 checked:bg-indigo-100"
+                />
+                <label
+                  for="checkbox-default"
+                  class="text-sm font-norma cursor-pointer text-gray-600"
+                  style="color: white; font-size: 18px"
+                  >Não consegue atrair leads realmente qualificados ?</label
+                >
+              </div>
+            </div>
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-7 rounded-xl flex items-start gap-4"
+            >
+              <div class="flex items-center mb-4">
+                <input
+                  id="checkbox-default"
+                  type="checkbox"
+                  value=""
+                  class="w-8 h-8 appearance-none border cursor-pointer border-gray-300 rounded-md mr-2 hover:border-indigo-500 hover:bg-indigo-100 checked:bg-no-repeat checked:bg-center checked:border-indigo-500 checked:bg-indigo-100"
+                />
+                <label
+                  for="checkbox-default"
+                  class="text-sm font-norma cursor-pointer text-gray-600"
+                  style="color: white; font-size: 18px"
+                  >Seus leads somem antes de virar cliente ?</label
+                >
+              </div>
+            </div>
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-7 rounded-xl flex items-start gap-4"
+            >
+              <div class="flex items-center mb-4">
+                <input
+                  id="checkbox-default"
+                  type="checkbox"
+                  value=""
+                  class="w-8 h-8 appearance-none border cursor-pointer border-gray-300 rounded-md mr-2 hover:border-indigo-500 hover:bg-indigo-100 checked:bg-no-repeat checked:bg-center checked:border-indigo-500 checked:bg-indigo-100"
+                />
+                <label
+                  for="checkbox-default"
+                  class="text-sm font-norma cursor-pointer text-gray-600"
+                  style="color: white; font-size: 18px"
+                  >Sua presença digital não traz resultados concretos?</label
+                >
+              </div>
+            </div>
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-7 rounded-xl flex items-start gap-4"
+            >
+              <div class="flex items-center mb-4">
+                <input
+                  id="checkbox-default"
+                  type="checkbox"
+                  value=""
+                  class="w-8 h-8 appearance-none border cursor-pointer border-gray-300 rounded-md mr-2 hover:border-indigo-500 hover:bg-indigo-100 checked:bg-no-repeat checked:bg-center checked:border-indigo-500 checked:bg-indigo-100"
+                />
+                <label
+                  for="checkbox-default"
+                  class="text-sm font-norma cursor-pointer text-gray-600"
+                  style="color: white; font-size: 18px"
+                  >Sua equipe de vendas não tem processo, padrão ou
+                  motivação?</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gatilho CTA -->
+    <section class="text-center py-16">
+      <h3 class="text-5xl font-semibold mb-4">
+        Se você escolheu qualquer desses desafios...
+      </h3>
+      <p class="mb-6 text-lg" style="font-size: 1.4em">
+        Preencha o formulário e comece a transformar seus resultados agora
+        mesmo.
+      </p>
+      <a
+        href="#formulario"
+        class="inline-block bg-purple-600 hover:bg-purple-700 transition text-white px-6 py-3 rounded-full font-semibold text-lg shadow-lg"
+      >
+        Quero resolver esses problemas
+      </a>
+    </section>
+
+    <!-- Nova Seção de Formulário Estilo Digimax -->
+    <section id="formulario" class="py-16 px-4 sm:px-6 md:px-16 bg-[#0B0F1C]">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    
+    <!-- Lado Esquerdo: Contato direto -->
+    <div class="space-y-6 text-center md:text-left">
+      <h3 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
+        Agência HUB
+      </h3>
+      <p class="text-gray-400 text-base sm:text-lg">
+        Entre em contato com nossa equipe para entender como podemos ajudar seu
+        negócio a crescer com estratégias digitais personalizadas.
+      </p>
+      <div class="flex justify-center md:justify-start gap-4 mt-6">
+        <a href="#" class="text-white hover:text-blue-400 transition">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+    </div>
+
+    <!-- Lado Direito: Formulário -->
+    <div class="bg-[#14182A] rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl">
+      <h4 class="text-xl sm:text-2xl font-semibold text-white mb-6 text-center md:text-left">
+        Envie sua mensagem
+      </h4>
+
+      <form action="#" method="post" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-gray-200">
+        <input
+          type="text"
+          name="nome"
+          placeholder="Nome"
+          class="col-span-1 p-4 rounded-md bg-[#1C223A] border border-[#2D365C]"
+          required
+        />
+        <input
+          type="text"
+          name="empresa"
+          placeholder="Empresa"
+          class="col-span-1 p-4 rounded-md bg-[#1C223A] border border-[#2D365C]"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="E-mail"
+          class="col-span-1 p-4 rounded-md bg-[#1C223A] border border-[#2D365C]"
+          required
+        />
+        <input
+          type="tel"
+          name="telefone"
+          placeholder="Telefone"
+          class="col-span-1 p-4 rounded-md bg-[#1C223A] border border-[#2D365C]"
+        />
+        <textarea
+          name="mensagem"
+          rows="4"
+          placeholder="Mensagem"
+          class="col-span-1 sm:col-span-2 p-4 rounded-md bg-[#1C223A] border border-[#2D365C]"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="col-span-1 sm:col-span-2 mt-2 bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 px-6 rounded-xl font-semibold hover:brightness-110 transition-all"
+        >
+          Enviar mensagem
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+    <!-- <section class="quarta-pagina">
+      <h4>Conheça nossas soluções</h4>
+      <p>Estrutura de Marketing Completa</p>
+
+      <div class="box-cards-solucoes">
+        <div class="card2">
+          <div class="header-card">
+            <div class="redondo">
+              <p>1</p>
+            </div>
+            <h5>Criação de Identidade Visual</h5>
+          </div>
+          <p>
+            Desenvolvemos identidades visuais que verdadeiramente representam a
+            essência da sua marca e se conectam com seu público. Do design do
+            logotipo à definição de paletas de cores e tipografia, construímos
+            um universo visual único e estratégico, garantindo que sua marca
+            seja reconhecida e valorizada em todos os pontos de contato.
+          </p>
+        </div>
+        <div class="card2">
+          <div class="header-card">
+            <div class="redondo">
+              <p>2</p>
+            </div>
+            <h5>Desenvolvimento de Websites</h5>
+          </div>
+          <p>
+            Criamos websites modernos e responsivos, projetados para oferecer
+            uma experiência de navegação intuitiva e eficaz aos seus usuários.
+            Nossas soluções digitais são desenvolvidas com foco em otimizar sua
+            presença online, impulsionar o engajamento e converter visitantes em
+            clientes, alinhando design e funcionalidade aos seus objetivos de
+            negócio.
+          </p>
+        </div>
+      </div>
+      <div class="box-cards-solucoes">
+        <div class="card2">
+          <div class="header-card">
+            <div class="redondo">
+              <p>3</p>
+            </div>
+            <h5>Produção de vídeos e campanhas profissionais</h5>
+          </div>
+          <p>
+            Transformamos suas ideias em produções audiovisuais de alta
+            qualidade e campanhas impactantes. Desde o roteiro criativo até a
+            edição final, desenvolvemos conteúdo em vídeo que informa, cativa e
+            fortalece sua mensagem, ideal para anúncios, redes sociais,
+            treinamentos e eventos que buscam resultados notáveis.
+          </p>
+        </div>
+        <div class="card2">
+          <div class="header-card">
+            <div class="redondo">
+              <p>4</p>
+            </div>
+            <h5>Gestão de Mídias Sociais, SEO, Google My Business</h5>
+          </div>
+          <p>
+            Ampliamos a presença digital da sua marca através da produção de
+            vídeos e campanhas impactantes. Gerenciamos suas mídias sociais para
+            construir engajamento e comunidade, e otimizamos sua visibilidade em
+            buscas com SEO e Google My Business, garantindo que seu público-alvo
+            encontre e se conecte com sua empresa online.
+          </p>
+        </div>
+      </div>
+      <div class="box-cards-solucoes">
+        <div class="card2">
+          <div class="header-card">
+            <div class="redondo">
+              <p>5</p>
+            </div>
+            <h5>Treinamento padronizado Presencial e Online</h5>
+          </div>
+          <p>
+            Oferecemos programas de treinamento padronizados e personalizados,
+            disponíveis nas modalidades presencial e online, para aprimorar as
+            competências da sua equipe. Nossos cursos são focados em desenvolver
+            habilidades essenciais e aplicar as melhores práticas de mercado,
+            promovendo um aprendizado eficiente e gerando resultados
+            consistentes para o crescimento da sua organização.
+          </p>
+        </div>
+        <div class="card2">
+          <div class="header-card">
+            <div class="redondo">
+              <p>6</p>
+            </div>
+            <h5>Formação de equipe comercial</h5>
+          </div>
+          <p>
+            Especializamo-nos na capacitação e desenvolvimento de equipes
+            comerciais, munindo-as com as estratégias e ferramentas mais
+            eficazes para o sucesso em vendas. Nossos treinamentos abrangem
+            desde a prospecção e negociação até o fechamento e gestão do
+            pós-venda, elevando a performance e contribuindo diretamente para o
+            crescimento da sua receita.
+          </p>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="fourth-page">
+      <div class="txt-fourth-page">
+        <h2>Conheça nossas soluções</h2>
+        <p>Estrutura de Marketing Completa</p>
+      </div>
+      <div class="container-cards4">
+        <div class="card">
+          <div class="top2">
+            <img src="imagens/bubbles.png" alt="" />
+          </div>
+          <div class="bottom">
+            <h3>Criação de <br />Identidade Visual</h3>
+            <p>
+              Desenvolvemos identidades visuais que verdadeiramente representam
+              a essência da sua marca e se conectam com seu público. Do design
+              do logotipo à definição de paletas de cores e tipografia,
+              construímos um universo visual único e estratégico, garantindo que
+              sua marca seja reconhecida e valorizada em todos os pontos de
+              contato.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="top2">
+            <img src="imagens/atom.png" alt="" />
+          </div>
+          <div class="bottom">
+            <h3>Desenvolvimento de Websites</h3>
+            <p>
+              Criamos websites modernos e responsivos, projetados para oferecer
+              uma experiência de navegação intuitiva e eficaz aos seus usuários.
+              Nossas soluções digitais são desenvolvidas com foco em otimizar
+              sua presença online, impulsionar o engajamento e converter
+              visitantes em clientes, alinhando design e funcionalidade aos seus
+              objetivos de negócio.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="top2">
+            <img src="imagens/clapperboard.png" alt="" />
+          </div>
+          <div class="bottom">
+            <h3>Produção de vídeos e campanhas profissionais</h3>
+            <p>
+              Transformamos suas ideias em produções audiovisuais de alta
+              qualidade e campanhas impactantes. Desde o roteiro criativo até a
+              edição final, desenvolvemos conteúdo em vídeo que informa, cativa
+              e fortalece sua mensagem, ideal para anúncios, redes sociais,
+              treinamentos e eventos que buscam resultados notáveis.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="container-cards4">
+        <div class="card">
+          <div class="top2">
+            <img src="imagens/chrome.png" alt="" />
+          </div>
+          <div class="bottom">
+            <h3>Gestão de Mídias Sociais, SEO, Google My Business</h3>
+            <p>
+              Ampliamos a presença digital da sua marca através da produção de
+              vídeos e campanhas impactantes. Gerenciamos suas mídias sociais
+              para construir engajamento e comunidade, e otimizamos sua
+              visibilidade em buscas com SEO e Google My Business, garantindo
+              que seu público-alvo encontre e se conecte com sua empresa online.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="top2">
+            <img src="imagens/chart-no-axes-combined.png" alt="" />
+          </div>
+          <div class="bottom">
+            <h3>Treinamento padronizado Presencial e Online</h3>
+            <p>
+              Oferecemos programas de treinamento padronizados e personalizados,
+              disponíveis nas modalidades presencial e online, para aprimorar as
+              competências da sua equipe. Nossos cursos são focados em
+              desenvolver habilidades essenciais e aplicar as melhores práticas
+              de mercado, promovendo um aprendizado eficiente e gerando
+              resultados consistentes para o crescimento da sua organização.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="top2">
+            <img src="imagens/circle-user.png" alt="" />
+          </div>
+          <div class="bottom">
+            <h3>Formação de equipe comercial</h3>
+            <p>
+              Especializamo-nos na capacitação e desenvolvimento de equipes
+              comerciais, munindo-as com as estratégias e ferramentas mais
+              eficazes para o sucesso em vendas. Nossos treinamentos abrangem
+              desde a prospecção e negociação até o fechamento e gestão do
+              pós-venda, elevando a performance e contribuindo diretamente para
+              o crescimento da sua receita.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+     <script>
+    const btn = document.getElementById("menu-btn");
+const menu = document.getElementById("menuLateral");
+const overlay = document.getElementById("fundoEscuro");
+
+function abrirMenu() {
+  menu.classList.add("open");
+  overlay.classList.add("active");
+  btn.classList.add("open");
+}
+
+function fecharMenu() {
+  menu.classList.remove("open");
+  overlay.classList.remove("active");
+  btn.classList.remove("open");
+}
+document.querySelectorAll('.sidebar nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    fecharMenu();
+  });
+});
+  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="rotation-phones.js"></script>
+  </body>
+</html>

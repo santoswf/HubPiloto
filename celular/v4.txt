@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br" >
+<head>
+  <meta charset="UTF-8" />
+  <title>Carrossel 3D Fluido com Destaque Suave</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f0f0f0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    .scene {
+      width: 400px;
+      height: 400px;
+      perspective: 1200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .carousel {
+      position: relative;
+      width: 200px;
+      height: 400px;
+      transform-style: preserve-3d;
+    }
+    .phone {
+      position: absolute;
+      width: 200px;
+      height: 400px;
+      border: 8px solid #000;
+      border-radius: 40px;
+      background: white;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* Angulo base por telefone */
+    .phone:nth-child(1) { --angle: 0deg; }
+    .phone:nth-child(2) { --angle: 72deg; }
+    .phone:nth-child(3) { --angle: 144deg; }
+    .phone:nth-child(4) { --angle: 216deg; }
+    .phone:nth-child(5) { --angle: 288deg; }
+
+    /* Destaque */
+    .phone.highlight {
+      transform: scale(1.2);
+      z-index: 10;
+    }
+    .notch {
+      width: 100px;
+      height: 20px;
+      background: black;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      margin-top: 10px;
+      z-index: 2;
+    }
+    .screen {
+      flex: 1;
+      width: 100%;
+      background-image: url('https://via.placeholder.com/200x360');
+      background-size: cover;
+      background-position: center;
+      margin-top: -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="carousel" id="carousel">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen"></div>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen"></div>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen"></div>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen"></div>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+    const phones = carousel.querySelectorAll('.phone');
+    const totalPhones = phones.length;
+
+    const baseAngles = Array.from(phones).map(phone => {
+      return parseFloat(getComputedStyle(phone).getPropertyValue('--angle'));
+    });
+
+    let rotation = 0;
+    const fastSpeed = 1.1;
+    const slowSpeed = 0.06;
+    let speed = fastSpeed;
+
+    function normalizeAngle(angle) {
+      return (angle % 360 + 360) % 360;
+    }
+
+    function findHighlightIndex(rot) {
+      let closestIndex = 0;
+      let closestDiff = 360;
+      for(let i = 0; i < totalPhones; i++) {
+        const angle = normalizeAngle(baseAngles[i] + rot);
+        const diff = Math.min(angle, 360 - angle);
+        if(diff < closestDiff) {
+          closestDiff = diff;
+          closestIndex = i;
+        }
+      }
+      return {index: closestIndex, diff: closestDiff};
+    }
+
+    function update() {
+      const {index, diff} = findHighlightIndex(rotation);
+
+      // Ajusta velocidade conforme distância do destaque
+      if(diff < 10) {
+        speed = slowSpeed;  // desacelera perto do destaque
+      } else {
+        speed = fastSpeed;  // acelera no resto
+      }
+
+      rotation -= speed;
+      rotation = normalizeAngle(rotation);
+
+      // Atualiza rotação
+      carousel.style.transform = `rotateY(${rotation}deg)`;
+
+      phones.forEach((phone, i) => {
+        phone.style.transform = `rotateY(${baseAngles[i]}deg) translateZ(350px)`;
+        if(i === index && diff < 10) {
+          phone.classList.add('highlight');
+        } else {
+          phone.classList.remove('highlight');
+        }
+      });
+
+      requestAnimationFrame(update);
+    }
+
+    update();
+
+    
+  </script>
+</body>
+</html>

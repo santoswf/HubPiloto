@@ -1,0 +1,152 @@
+@media (max-width: 850px) {
+  .txt-page-one h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .txt-page-one p {
+    font-size: 1em;
+    text-align: center;
+  }
+
+  .page-one {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scene {
+    width: 210px;
+    height: 380px;
+    perspective: 3790px;
+    position: relative;
+  }
+
+  .txt-second-page h2 {
+    font-size: 2em;
+  }
+
+  .img-page-one img {
+    height: 240px;
+  }
+
+  .celular {
+    width: 100px;
+    height: 200px;
+  }
+
+  .responsividade {
+    width: 320px;
+    margin: auto;
+  }
+
+  .h2-checkbocks {
+    font-size: 3em;
+    margin: auto;
+    width: 350px;
+    text-align: left;
+  }
+
+  .txt-page-one {
+    width: 380px;
+  }
+
+  .container-cards4 {
+    flex-direction: column;
+  }
+  
+  .card {
+    margin: 5% auto;
+  }
+
+  #formulario {
+    width: 100%;
+  }
+
+  .align-phones {
+    width: 200pxex;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background: black;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: 999;
+}
+
+.overlay.active {
+  display: block;
+}
+
+.menu-btn {
+  width: 30px;
+  height: 25px;
+  position: relative;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.menu-btn span {
+  height: 3px;
+  background: white;
+  width: 100%;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+.menu-btn.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: flex;
+  }
+
+  nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #333;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  nav.active {
+    max-height: 200px;
+    padding: 1rem 0;
+  }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrossel 3D - Celulares</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(circle, #001133, #000818);
+      font-family: Arial, sans-serif;
+    }
+
+    .label {
+      font-size: 16px;
+      color: white;
+      background: rgba(0, 119, 255, 0.6);
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+  <!-- CSS2DRenderer -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/renderers/CSS2DRenderer.js"></script>
+
+  <script>
+    // Cena, câmera e renderizador principal
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 15);
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Renderizador de rótulos
+    const labelRenderer = new THREE.CSS2DRenderer();
+    labelRenderer.setSize(window.innerWidth, window.innerHeight);
+    labelRenderer.domElement.style.position = 'absolute';
+    labelRenderer.domElement.style.top = '0';
+    labelRenderer.domElement.style.pointerEvents = 'none';
+    document.body.appendChild(labelRenderer.domElement);
+
+    // Geometria e materiais
+    const phoneGeometry = new THREE.BoxGeometry(2, 3.5, 0.1);
+    const phoneMaterial = new THREE.MeshBasicMaterial({
+      color: 0x112244,
+      transparent: true,
+      opacity: 0.15,
+      side: THREE.DoubleSide
+    });
+
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xffff99 });
+
+    const phones = [];
+    const radius = 7;
+    const texts = [
+      'Do lead à venda',
+      'Atraia e converta',
+      'Engaje com valor',
+      'Cresça com estratégia',
+      'O digital que vende',
+      'Automatize seu funil',
+      'Desperte interesse',
+      'Venda todos os dias'
+    ];
+
+    // Criação dos grupos com texto
+    for (let i = 0; i < texts.length; i++) {
+      const mesh = new THREE.Mesh(phoneGeometry, phoneMaterial);
+      const edges = new THREE.EdgesGeometry(phoneGeometry);
+      const outline = new THREE.LineSegments(edges, edgeMaterial);
+
+      const group = new THREE.Group();
+      group.add(mesh);
+      group.add(outline);
+
+      const angle = (i / texts.length) * Math.PI * 2;
+      group.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+      group.lookAt(0, 0, 0);
+
+      // Texto flutuante com CSS2D
+      const div = document.createElement('div');
+      div.className = 'label';
+      div.textContent = texts[i];
+
+      const label = new THREE.CSS2DObject(div);
+      label.position.set(0, 0, 0.12);
+      group.add(label);
+
+      phones.push(group);
+      scene.add(group);
+    }
+
+    // Animação
+    function animate() {
+      requestAnimationFrame(animate);
+
+      scene.rotation.y += 0.002; // Gira tudo
+
+      renderer.render(scene, camera);
+      labelRenderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Responsividade
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      labelRenderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

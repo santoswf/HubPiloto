@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Carrossel de Celulares 3D</title>
+    <style>
+      body {
+        margin: 0;
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: sans-serif;
+      }
+
+      .scene {
+        width: 400px;
+        height: 600px;
+        perspective: 1200px;
+        position: relative;
+      }
+
+      .carrossel {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: transform 1s ease;
+      }
+
+      .celular {
+        position: absolute;
+        width: 200px;
+        height: 400px;
+        transform-style: preserve-3d;
+        top: 100px;
+        left: 100px;
+        transform: rotateY(0deg) translateZ(400px);
+      }
+
+      .face {
+        position: absolute;
+        background: rgba(11, 101, 218, 0.144);
+        border: 2px solid rgb(2, 78, 177);
+        border-radius: 30px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+
+      .front,
+      .back {
+        width: 200px;
+        height: 395px;
+      }
+
+      .front {
+        transform: translateZ(10px);
+      }
+
+      .back {
+        transform: rotateY(180deg) translateZ(10px);
+      }
+
+      .left,
+      .right {
+        top: 3px;
+        background: rgba(12, 23, 185, 0.164);
+        border: none;
+      }
+
+      .left {
+        width: 20px;
+        height: 388px;
+        transform: rotateY(10deg) translateZ(-1px);
+        left: -10px;
+      }
+
+      .right {        
+        width: 20px;
+        height: 388px;
+        transform: rotateY(90deg) translateZ(2px);
+        right: -10px;
+      }
+
+      .botao {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        color: #111;
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scene">
+      <div class="carrossel" id="carrossel">
+        <!-- Repita para cada celular -->
+        <div class="celular" style="transform: rotateY(0deg) translateZ(400px)">
+          <div class="face front">Celular 1</div>
+          <div class="face back"></div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+        </div>
+        <div
+          class="celular"
+          style="transform: rotateY(72deg) translateZ(400px)"
+        >
+          <div class="face front">Celular 2</div>
+          <div class="face back"></div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+        </div>
+        <div
+          class="celular"
+          style="transform: rotateY(144deg) translateZ(400px)"
+        >
+          <div class="face front">Celular 3</div>
+          <div class="face back"></div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+        </div>
+        <div
+          class="celular"
+          style="transform: rotateY(216deg) translateZ(400px)"
+        >
+          <div class="face front">Celular 4</div>
+          <div class="face back"></div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+        </div>
+        <div
+          class="celular"
+          style="transform: rotateY(288deg) translateZ(400px)"
+        >
+          <div class="face front">Celular 5</div>
+          <div class="face back"></div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="botao" onclick="girarCarrossel()">Próximo</div>
+
+    <script>
+      let angulo = 0;
+
+      function girarCarrossel() {
+        angulo += 72;
+        document.getElementById(
+          "carrossel"
+        ).style.transform = `rotateY(-${angulo}deg)`;
+      }
+    </script>
+  </body>
+</html>

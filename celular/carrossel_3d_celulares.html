@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Carrossel 3D de Celulares com Controle Suave</title>
+    <style>
+      body {
+        margin: 0;
+        background: #0a0a23;
+        overflow: hidden;
+        cursor: default;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script>
+      let scene = new THREE.Scene();
+      let camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      let renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      let light = new THREE.AmbientLight(0xffffff, 1);
+      scene.add(light);
+
+      function createPhone() {
+        let shape = new THREE.Shape();
+        let w = 1,
+          h = 2;
+        let r = 0.2;
+
+        shape.moveTo(-w / 2 + r, -h / 2);
+        shape.lineTo(w / 2 - r, -h / 2);
+        shape.quadraticCurveTo(w / 2, -h / 2, w / 2, -h / 2 + r);
+        shape.lineTo(w / 2, h / 2 - r);
+        shape.quadraticCurveTo(w / 2, h / 2, w / 2 - r, h / 2);
+        shape.lineTo(-w / 2 + r, h / 2);
+        shape.quadraticCurveTo(-w / 2, h / 2, -w / 2, h / 2 - r);
+        shape.lineTo(-w / 2, -h / 2 + r);
+        shape.quadraticCurveTo(-w / 2, -h / 2, -w / 2 + r, -h / 2);
+
+        const notchWidth = 0.5,
+          notchHeight = 0.25,
+          notchRadius = 0.1;
+        let notchPath = new THREE.Path();
+        notchPath.moveTo(-notchWidth / 2, h / 2);
+        notchPath.lineTo(-notchWidth / 2, h / 2 - notchHeight + notchRadius);
+        notchPath.quadraticCurveTo(
+          -notchWidth / 2,
+          h / 2 - notchHeight,
+          -notchWidth / 2 + notchRadius,
+          h / 2 - notchHeight
+        );
+        notchPath.lineTo(notchWidth / 2 - notchRadius, h / 2 - notchHeight);
+        notchPath.quadraticCurveTo(
+          notchWidth / 2,
+          h / 2 - notchHeight,
+          notchWidth / 2,
+          h / 2 - notchHeight + notchRadius
+        );
+        notchPath.lineTo(notchWidth / 2, h / 2);
+        shape.holes.push(notchPath);
+
+        let extrudeSettings = { depth: 0.1, bevelEnabled: false };
+
+        let geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+        let edges = new THREE.EdgesGeometry(geometry);
+        let material = new THREE.LineBasicMaterial({ color: 0x00ffff });
+        let wireframe = new THREE.LineSegments(edges, material);
+
+        return wireframe;
+      }
+
+      let phones = [];
+      const total = 5;
+      const baseAngles = [];
+      const radius = 2.5;
+
+      for (let i = 0; i < total; i++) {
+        let phone = createPhone();
+        let angleDeg = (i / total) * 360;
+        baseAngles.push(angleDeg);
+        scene.add(phone);
+        phones.push(phone);
+      }
+
+      camera.position.z = 6;
+
+      let rotation = 0; // ângulo atual em graus
+      let targetRotation = 0; // ângulo alvo que a rotação vai seguir
+      let isDragging = false;
+      let previousX = 0;
+
+      let rotSpeed = 0; // velocidade angular (deg/frame)
+      const maxSpeed = 0.3;
+      const minSpeed = 0.05;
+      const decelerationDistance = 30; // graus para desacelerar perto do destaque
+
+      function normalizeAngle(angle) {
+        return ((angle % 360) + 360) % 360;
+      }
+
+      function findHighlightIndex(rot) {
+        let closestIndex = 0;
+        let closestDiff = 320;
+        for (let i = 0; i < total; i++) {
+          // Ajuste: ângulo relativo ao "frente" da câmera = 180°
+          let angle = normalizeAngle(baseAngles[i] + rot);
+          // distância do ângulo para 180º (frente)
+          let diff = Math.min(
+            Math.abs(angle - 200),
+            290 - Math.abs(angle - 180)
+          );
+          if (diff < closestDiff) {
+            closestDiff = diff;
+            closestIndex = i;
+          }
+        }
+        return { index: closestIndex, diff: closestDiff };
+      }
+
+      // Eventos para arrasto mouse e toque
+      renderer.domElement.addEventListener("pointerdown", (e) => {
+        isDragging = true;
+        previousX = e.clientX;
+      });
+
+      window.addEventListener("pointerup", () => {
+        isDragging = false;
+      });
+
+      window.addEventListener("pointercancel", () => {
+        isDragging = false;
+      });
+
+      renderer.domElement.addEventListener("pointermove", (e) => {
+        if (isDragging) {
+          const deltaX = e.clientX - previousX;
+          const rotationDelta = deltaX * 0.3;
+          targetRotation += rotationDelta;
+          previousX = e.clientX;
+        }
+      });
+
+      renderer.domElement.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          previousX = e.touches[0].clientX;
+        }
+      });
+
+      renderer.domElement.addEventListener("touchend", () => {
+        isDragging = false;
+      });
+
+      renderer.domElement.addEventListener("touchmove", (e) => {
+        if (isDragging && e.touches.length === 1) {
+          const deltaX = e.touches[0].clientX - previousX;
+          const rotationDelta = deltaX * 0.3;
+          targetRotation += rotationDelta;
+          previousX = e.touches[0].clientX;
+        }
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const { index: closestIndex, diff } = findHighlightIndex(rotation);
+
+        if (!isDragging) {
+          // Se estiver longe do destaque, velocidade é máxima
+          if (diff > decelerationDistance) {
+            rotSpeed = maxSpeed;
+          } else {
+            // Próximo ao destaque, desacelera suavemente (linear)
+            const factor = diff / decelerationDistance; // 1 a 0
+            rotSpeed = minSpeed + (maxSpeed - minSpeed) * factor;
+          }
+          // Gira no sentido negativo para dar efeito carrossel
+          rotation -= rotSpeed;
+        } else {
+          // Se está arrastando, atualiza velocidade com base no delta de movimento
+          // (isso você já faz ao ajustar targetRotation, então não altera aqui)
+        }
+
+        rotation = normalizeAngle(rotation);
+
+        phones.forEach((p, i) => {
+          const angle = baseAngles[i] + rotation;
+          const rad = angle * (Math.PI / 190);
+          
+
+          p.position.set(Math.cos(rad) * radius, 0, Math.sin(rad) * radius);
+          p.rotation.y = -rad + Math.PI;
+
+          const isClosest = i === closestIndex && diff < 15;
+          const targetScale = isClosest ? 1.3 : 1;
+          p.scale.x += (targetScale - p.scale.x) * 0.1;
+          p.scale.y += (targetScale - p.scale.y) * 0.1;
+          p.scale.z += (targetScale - p.scale.z) * 0.1;
+        });
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
